@@ -38,17 +38,17 @@ local Notifications  = External.Notifications
 
 local themes = {
     preset = {
-        accent       = rgb(255, 50, 130),    -- Hot Pink
+        accent       = rgb(255, 50, 130),    -- Hot Pink / Magenta
         
         background   = rgb(13, 10, 15),      -- Deep dark with pink undertone
-        section      = rgb(20, 15, 22),      -- Slightly lighter warm dark
-        element      = rgb(28, 22, 30),      -- Element bg with mauve hint
+        section      = rgb(20, 15, 22),      -- Subtle purple-pink tint
+        element      = rgb(28, 22, 30),      -- Warm dark element
         
         outline      = rgb(60, 35, 55),      -- Pink-tinted outline
         text         = rgb(255, 245, 250),   -- Warm white with pink tint
-        subtext      = rgb(170, 140, 160),   -- Muted pink grey
+        subtext      = rgb(170, 140, 160),   -- Muted pink-grey
         
-        tab_active   = rgb(50, 25, 45),      -- Active Tab (dark pink)
+        tab_active   = rgb(50, 25, 45),      -- Deep pink active
         tab_inactive = rgb(20, 15, 22),
     },
     utility = {}
@@ -166,17 +166,17 @@ function External:Window(properties)
         BackgroundColor3 = themes.preset.background, BorderSizePixel = 0, ZIndex = 1
     })
     External:Themify(Items.Window, "background", "BackgroundColor3")
-    External:Create("UICorner", { Parent = Items.Window, CornerRadius = dim(0, 14) })
+    External:Create("UICorner", { Parent = Items.Window, CornerRadius = dim(0, 10) })
     External:Themify(External:Create("UIStroke", { Parent = Items.Window, Color = themes.preset.outline, Thickness = 1 }), "outline", "Color")
 
 
     -- [CREATIVE SWITCH]: Floating Sidebar
     Items.Sidebar = External:Create("Frame", {
-        Parent = Items.Window, Position = dim2(0, 12, 0, 12), Size = dim2(0, 58, 1, -24),
+        Parent = Items.Window, Position = dim2(0, 10, 0, 10), Size = dim2(0, 50, 1, -20),
         BackgroundColor3 = themes.preset.section, BorderSizePixel = 0, ZIndex = 2
     })
     External:Themify(Items.Sidebar, "section", "BackgroundColor3")
-    External:Create("UICorner", { Parent = Items.Sidebar, CornerRadius = dim(0, 12) })
+    External:Create("UICorner", { Parent = Items.Sidebar, CornerRadius = dim(0, 10) })
     External:Themify(External:Create("UIStroke", { Parent = Items.Sidebar, Color = themes.preset.outline, Thickness = 1 }), "outline", "Color")
 
     -- Scrolling Tab Holder
@@ -188,22 +188,22 @@ function External:Window(properties)
         Parent = Items.TabHolder, FillDirection = Enum.FillDirection.Vertical, 
         HorizontalAlignment = Enum.HorizontalAlignment.Center, VerticalAlignment = Enum.VerticalAlignment.Top, Padding = dim(0, 10) 
     })
-    External:Create("UIPadding", { Parent = Items.TabHolder, PaddingTop = dim(0, 14), PaddingBottom = dim(0, 14) })
+    External:Create("UIPadding", { Parent = Items.TabHolder, PaddingTop = dim(0, 12), PaddingBottom = dim(0, 12) })
 
     -- [CREATIVE SWITCH]: Floating Header
     Items.Header = External:Create("Frame", { 
-        Parent = Items.Window, Position = dim2(0, 82, 0, 12), Size = dim2(1, -94, 0, 50), 
+        Parent = Items.Window, Position = dim2(0, 72, 0, 10), Size = dim2(1, -82, 0, 46), 
         BackgroundColor3 = themes.preset.section, Active = true, ZIndex = 2 
     })
     External:Themify(Items.Header, "section", "BackgroundColor3")
-    External:Create("UICorner", { Parent = Items.Header, CornerRadius = dim(0, 12) })
+    External:Create("UICorner", { Parent = Items.Header, CornerRadius = dim(0, 8) })
     External:Themify(External:Create("UIStroke", { Parent = Items.Header, Color = themes.preset.outline, Thickness = 1 }), "outline", "Color")
 
     Items.LogoText = External:Create("TextLabel", {
         Parent = Items.Header, Text = Cfg.Title, TextColor3 = themes.preset.text,
         AnchorPoint = vec2(0, 0.5), Position = dim2(0, 20, 0.5, 0),
         Size = dim2(0, 0, 0, 16), AutomaticSize = Enum.AutomaticSize.X,
-        BackgroundTransparency = 1, FontFace = Font.new("rbxassetid://12187365364", Enum.FontWeight.Bold), TextSize = 16, TextXAlignment = Enum.TextXAlignment.Left, ZIndex = 4
+        BackgroundTransparency = 1, FontFace = Font.new("rbxassetid://12187365364", Enum.FontWeight.ExtraBold), TextSize = 17, TextXAlignment = Enum.TextXAlignment.Left, ZIndex = 4
     })
     External:Themify(Items.LogoText, "text", "TextColor3")
 
@@ -259,7 +259,7 @@ function External:Window(properties)
 
     -- Page Container
     Items.PageHolder = External:Create("Frame", { 
-        Parent = Items.Window, Position = dim2(0, 82, 0, 74), Size = dim2(1, -94, 1, -86), 
+        Parent = Items.Window, Position = dim2(0, 72, 0, 66), Size = dim2(1, -82, 1, -76), 
         BackgroundTransparency = 1, ClipsDescendants = true 
     })
 
