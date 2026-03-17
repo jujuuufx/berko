@@ -332,12 +332,12 @@ function External:Tab(properties)
     if not Cfg.Hidden then
         -- [CREATIVE SWITCH]: Pill-shaped tab buttons
         Items.Button = External:Create("TextButton", { 
-            Parent = self.Items.TabHolder, Size = dim2(0, 38, 0, 38), 
+            Parent = self.Items.TabHolder, Size = dim2(0, 34, 0, 34), 
             BackgroundColor3 = themes.preset.tab_active, 
             BackgroundTransparency = 1, Text = "", AutoButtonColor = false, ZIndex = 5 
         })
         External:Themify(Items.Button, "tab_active", "BackgroundColor3")
-        External:Create("UICorner", { Parent = Items.Button, CornerRadius = dim(0.5, 0) })
+        External:Create("UICorner", { Parent = Items.Button, CornerRadius = dim(0, 10) })
 
         Items.IconImg = External:Create("ImageLabel", { 
             Parent = Items.Button, AnchorPoint = vec2(0.5, 0.5), Position = dim2(0.5, 0, 0.5, 0),
@@ -428,7 +428,7 @@ function External:Section(properties)
         BackgroundColor3 = themes.preset.section, BorderSizePixel = 0, ClipsDescendants = true 
     })
     External:Themify(Items.Section, "section", "BackgroundColor3")
-    External:Create("UICorner", { Parent = Items.Section, CornerRadius = dim(0, 12) })
+    External:Create("UICorner", { Parent = Items.Section, CornerRadius = dim(0, 10) })
     External:Themify(External:Create("UIStroke", { Parent = Items.Section, Color = themes.preset.outline, Thickness = 1 }), "outline", "Color")
 
     -- Clean Header Design
@@ -436,15 +436,15 @@ function External:Section(properties)
     
     -- [CREATIVE SWITCH]: Dot Indicator for sections
     Items.Dot = External:Create("Frame", { 
-        Parent = Items.Header, Position = dim2(0, 14, 0.5, 0), AnchorPoint = vec2(0, 0.5), Size = dim2(0, 6, 0, 6), 
+        Parent = Items.Header, Position = dim2(0, 12, 0.5, 0), AnchorPoint = vec2(0, 0.5), Size = dim2(0, 3, 0, 14), 
         BackgroundColor3 = themes.preset.accent, BorderSizePixel = 0 
     })
     External:Themify(Items.Dot, "accent", "BackgroundColor3")
-    External:Create("UICorner", { Parent = Items.Dot, CornerRadius = dim(1, 0) })
+    External:Create("UICorner", { Parent = Items.Dot, CornerRadius = dim(0, 2) })
 
     Items.Title = External:Create("TextLabel", { 
-        Parent = Items.Header, Position = dim2(0, 28, 0.5, 0), AnchorPoint = vec2(0, 0.5), Size = dim2(1, -44, 0, 14), 
-        BackgroundTransparency = 1, Text = Cfg.Name, TextColor3 = themes.preset.text, FontFace = Font.new("rbxassetid://12187365364", Enum.FontWeight.Bold), TextSize = 14, TextXAlignment = Enum.TextXAlignment.Left 
+        Parent = Items.Header, Position = dim2(0, 22, 0.5, 0), AnchorPoint = vec2(0, 0.5), Size = dim2(1, -36, 0, 14), 
+        BackgroundTransparency = 1, Text = Cfg.Name, TextColor3 = themes.preset.text, FontFace = Font.new("rbxassetid://12187365364", Enum.FontWeight.Bold), TextSize = 13, TextXAlignment = Enum.TextXAlignment.Left 
     })
     External:Themify(Items.Title, "text", "TextColor3")
 
@@ -532,16 +532,16 @@ function External:Toggle(properties)
     local Items = Cfg.Items
 
     Items.Button = External:Create("TextButton", { 
-        Parent = self.Items.Container, Size = dim2(1, 0, 0, 36), 
+        Parent = self.Items.Container, Size = dim2(1, 0, 0, 34), 
         BackgroundColor3 = themes.preset.element, Text = "", AutoButtonColor = false
     })
     External:Themify(Items.Button, "element", "BackgroundColor3")
-    External:Create("UICorner", { Parent = Items.Button, CornerRadius = dim(0, 8) })
+    External:Create("UICorner", { Parent = Items.Button, CornerRadius = dim(0, 6) })
     External:Themify(External:Create("UIStroke", { Parent = Items.Button, Color = themes.preset.outline, Thickness = 1 }), "outline", "Color")
 
     -- [CREATIVE SWITCH]: iOS Style Switch Pill
     Items.SwitchBG = External:Create("Frame", { 
-        Parent = Items.Button, AnchorPoint = vec2(1, 0.5), Position = dim2(1, -12, 0.5, 0), Size = dim2(0, 36, 0, 20), 
+        Parent = Items.Button, AnchorPoint = vec2(1, 0.5), Position = dim2(1, -10, 0.5, 0), Size = dim2(0, 32, 0, 18), 
         BackgroundColor3 = themes.preset.background, BorderSizePixel = 0 
     })
     External:Themify(Items.SwitchBG, "background", "BackgroundColor3")
@@ -549,7 +549,7 @@ function External:Toggle(properties)
     External:Themify(External:Create("UIStroke", { Parent = Items.SwitchBG, Color = themes.preset.outline, Thickness = 1 }), "outline", "Color")
 
     Items.SwitchKnob = External:Create("Frame", {
-        Parent = Items.SwitchBG, AnchorPoint = vec2(0, 0.5), Position = dim2(0, 3, 0.5, 0), Size = dim2(0, 14, 0, 14),
+        Parent = Items.SwitchBG, AnchorPoint = vec2(0, 0.5), Position = dim2(0, 3, 0.5, 0), Size = dim2(0, 12, 0, 12),
         BackgroundColor3 = themes.preset.subtext, BorderSizePixel = 0
     })
     External:Themify(Items.SwitchKnob, "subtext", "BackgroundColor3")
@@ -565,7 +565,7 @@ function External:Toggle(properties)
     function Cfg.set(bool)
         State = bool
         External:Tween(Items.SwitchBG, {BackgroundColor3 = State and themes.preset.accent or themes.preset.background}, TweenInfo.new(0.25, Enum.EasingStyle.Quart, Enum.EasingDirection.Out))
-        External:Tween(Items.SwitchKnob, {Position = State and dim2(0, 19, 0.5, 0) or dim2(0, 3, 0.5, 0), BackgroundColor3 = State and rgb(255,255,255) or themes.preset.subtext}, TweenInfo.new(0.25, Enum.EasingStyle.Back, Enum.EasingDirection.Out))
+        External:Tween(Items.SwitchKnob, {Position = State and dim2(0, 17, 0.5, 0) or dim2(0, 3, 0.5, 0), BackgroundColor3 = State and rgb(255,255,255) or themes.preset.subtext}, TweenInfo.new(0.25, Enum.EasingStyle.Back, Enum.EasingDirection.Out))
         External:Tween(Items.Title, {TextColor3 = State and themes.preset.text or themes.preset.subtext}, TweenInfo.new(0.2))
         
         if Cfg.Flag then Flags[Cfg.Flag] = State end
@@ -588,18 +588,18 @@ function External:Button(properties)
     local Items = Cfg.Items
 
     Items.Button = External:Create("TextButton", { 
-        Parent = self.Items.Container, Size = dim2(1, 0, 0, 36), BackgroundColor3 = themes.preset.element, 
+        Parent = self.Items.Container, Size = dim2(1, 0, 0, 34), BackgroundColor3 = themes.preset.element, 
         Text = Cfg.Name, TextColor3 = themes.preset.text, TextSize = 13, FontFace = Font.new("rbxassetid://12187365364", Enum.FontWeight.SemiBold), AutoButtonColor = false 
     })
     External:Themify(Items.Button, "element", "BackgroundColor3")
     External:Themify(Items.Button, "text", "TextColor3")
-    External:Create("UICorner", { Parent = Items.Button, CornerRadius = dim(0, 8) })
+    External:Create("UICorner", { Parent = Items.Button, CornerRadius = dim(0, 6) })
     External:Themify(External:Create("UIStroke", { Parent = Items.Button, Color = themes.preset.outline, Thickness = 1 }), "outline", "Color")
 
     Items.Button.MouseButton1Click:Connect(function()
-        External:Tween(Items.Button, {Size = dim2(0.98, 0, 0, 34), BackgroundColor3 = themes.preset.accent}, TweenInfo.new(0.1))
+        External:Tween(Items.Button, {Size = dim2(0.98, 0, 0, 32), BackgroundColor3 = themes.preset.accent}, TweenInfo.new(0.1))
         task.wait(0.1)
-        External:Tween(Items.Button, {Size = dim2(1, 0, 0, 36), BackgroundColor3 = themes.preset.element}, TweenInfo.new(0.3, Enum.EasingStyle.Back, Enum.EasingDirection.Out))
+        External:Tween(Items.Button, {Size = dim2(1, 0, 0, 34), BackgroundColor3 = themes.preset.element}, TweenInfo.new(0.3, Enum.EasingStyle.Back, Enum.EasingDirection.Out))
         Cfg.Callback()
     end)
     return setmetatable(Cfg, External)
@@ -624,7 +624,7 @@ function External:Slider(properties)
         BackgroundColor3 = themes.preset.element 
     })
     External:Themify(Items.ContainerBox, "element", "BackgroundColor3")
-    External:Create("UICorner", { Parent = Items.ContainerBox, CornerRadius = dim(0, 8) })
+    External:Create("UICorner", { Parent = Items.ContainerBox, CornerRadius = dim(0, 6) })
     External:Themify(External:Create("UIStroke", { Parent = Items.ContainerBox, Color = themes.preset.outline, Thickness = 1 }), "outline", "Color")
 
     Items.Title = External:Create("TextLabel", { Parent = Items.ContainerBox, Position = dim2(0, 14, 0, 6), Size = dim2(1, -28, 0, 20), BackgroundTransparency = 1, Text = Cfg.Name, TextColor3 = themes.preset.text, TextSize = 13, FontFace = Font.new("rbxassetid://12187365364", Enum.FontWeight.Medium), TextXAlignment = Enum.TextXAlignment.Left })
@@ -690,7 +690,7 @@ function External:Textbox(properties)
         BackgroundColor3 = themes.preset.element 
     })
     External:Themify(Items.ContainerBox, "element", "BackgroundColor3")
-    External:Create("UICorner", { Parent = Items.ContainerBox, CornerRadius = dim(0, 8) })
+    External:Create("UICorner", { Parent = Items.ContainerBox, CornerRadius = dim(0, 6) })
     External:Themify(External:Create("UIStroke", { Parent = Items.ContainerBox, Color = themes.preset.outline, Thickness = 1 }), "outline", "Color")
 
     Items.Input = External:Create("TextBox", { 
@@ -730,7 +730,7 @@ function External:Dropdown(properties)
         BackgroundColor3 = themes.preset.element 
     })
     External:Themify(Items.ContainerBox, "element", "BackgroundColor3")
-    External:Create("UICorner", { Parent = Items.ContainerBox, CornerRadius = dim(0, 8) })
+    External:Create("UICorner", { Parent = Items.ContainerBox, CornerRadius = dim(0, 6) })
     External:Themify(External:Create("UIStroke", { Parent = Items.ContainerBox, Color = themes.preset.outline, Thickness = 1 }), "outline", "Color")
 
     Items.Main = External:Create("TextButton", { 
@@ -855,7 +855,7 @@ function External:Label(properties)
         BackgroundColor3 = themes.preset.element 
     })
     External:Themify(Items.ContainerBox, "element", "BackgroundColor3")
-    External:Create("UICorner", { Parent = Items.ContainerBox, CornerRadius = dim(0, 8) })
+    External:Create("UICorner", { Parent = Items.ContainerBox, CornerRadius = dim(0, 6) })
     External:Themify(External:Create("UIStroke", { Parent = Items.ContainerBox, Color = themes.preset.outline, Thickness = 1 }), "outline", "Color")
 
     Items.Title = External:Create("TextLabel", { 
@@ -1233,7 +1233,7 @@ function External:Configs(window)
         Name = "Copy Discord Link",
         Callback = function()
             if setclipboard then
-                setclipboard("https://discord.gg/Za34aw9NW")
+                setclipboard("https://discord.gg/stackzgg")
                 Notifications:Create({Name = "Copied Discord link to clipboard!"})
             end
         end
