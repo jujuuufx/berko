@@ -1,11 +1,12 @@
-local KILLSWITCH_URL = "https://raw.githubusercontent.com/jujuuufx/berko/refs/heads/main/killswitch.txt?t=" .. os.time()
+local KILLSWITCH_URL = "https://raw.githubusercontent.com/jujuuufx/berko/refs/heads/main/killswitch.txt?at=" .. math.random(1, 999999)
 
 local success, result = pcall(function()
     return game:HttpGet(KILLSWITCH_URL)
 end)
 
-if not success or (result and result:lower():find("false")) then
-    game:GetService("Players").LocalPlayer:Kick("Script is disabled by developer. (Killswitch)")
+if not success or not result or not result:lower():find("true") then
+    print("[DEBUG] Killswitch check failed or returned false. Result:", tostring(result))
+    game:GetService("Players").LocalPlayer:Kick("Access Denied: Set status to 'true' in GitHub to enable.")
     return
 end
 
