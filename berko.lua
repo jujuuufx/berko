@@ -1,10 +1,10 @@
-local KILLSWITCH_URL = "https://raw.githubusercontent.com/jujuuufx/berko/refs/heads/main/killswitch.txt"
+local KILLSWITCH_URL = "https://raw.githubusercontent.com/jujuuufx/berko/refs/heads/main/killswitch.txt?t=" .. os.time()
 
 local success, result = pcall(function()
     return game:HttpGet(KILLSWITCH_URL)
 end)
 
-if not success or result:lower():gsub("%s+", "") == "false" then
+if not success or (result and result:lower():find("false")) then
     game:GetService("Players").LocalPlayer:Kick("Script is disabled by developer. (Killswitch)")
     return
 end
